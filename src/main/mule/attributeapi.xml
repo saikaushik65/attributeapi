@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="fa961543-e0c4-4e6e-9ab8-afeb76baf29f" >
+		<http:listener-connection host="0.0.0.0" port="8081" />
+	</http:listener-config>
+	<flow name="attributeapiFlow" doc:id="265b060c-895f-45d7-98b8-efdb5be159e7" >
+		<http:listener doc:name="Listener" doc:id="2b54d171-9fd8-41de-b1a0-f3af74527fd3" config-ref="HTTP_Listener_config" path="/attributeapi"/>
+		<logger level="INFO" doc:name="Logger" doc:id="fb41f065-8349-4d6a-a775-5e3f801125a1" message='#[attributes.queryParams.username.value]'/>
+		<logger level="INFO" doc:name="Logger" doc:id="391a1565-380a-4bea-b6df-d034d9520c92" message='#["flow ends"]'/>
+	</flow>
+</mule>
